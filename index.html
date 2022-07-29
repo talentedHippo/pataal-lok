@@ -1,13 +1,26 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Three.js 101</title>
+  <!--  Simple reset to delete the margins  -->
+  <style>
+    video { width: 100%; height: 100% }
+    body { margin: 0; }
+    canvas { width: 100%; height: 100% }
+  </style>
+  <!--  Three.js CDN  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+</head>
+<body>
+  <video
+      id="user_camera"
+      playsinline
+      autoplay="true"
+      width="640"
+      height="480"
+    ></video>
+  <!--  Our code  -->
+  <script src="./src/three/app.ts"></script>
+  <script src="./src/tensor/main.ts"></script>
+</body>
 </html>
