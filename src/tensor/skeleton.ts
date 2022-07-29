@@ -10,10 +10,16 @@ export class Skeleton {
         const leftMouth = pose.keypoints.find((keypoint) => keypoint.name === 'mouth_left');
         const rightMouth = pose.keypoints.find((keypoint) => keypoint.name === 'mouth_right');
         const nose = pose.keypoints.find((keypoint) => keypoint.name === 'nose');
+        const leftIndex = pose.keypoints.find((keypoint) => keypoint.name === 'left_index');
+        const rightIndex = pose.keypoints.find((keypoint) => keypoint.name === 'right_index');
+        const leftShoulder = pose.keypoints.find((keypoint) => keypoint.name === 'left_shoulder');
+        const rightShoulder = pose.keypoints.find((keypoint) => keypoint.name === 'right_shoulder');
 
+        
         this.ctx.fillStyle = 'red';
         this.ctx.strokeStyle = 'red';
         this.ctx.lineWidth = 5;
+        //this.ctx.scale(.20,.20) 
         if (leftEye) {
             this.ctx.beginPath();
             this.ctx.arc(leftEye.x - 10, leftEye.y - 10, 10, 0, 2 * Math.PI);
@@ -36,6 +42,31 @@ export class Skeleton {
             this.ctx.lineTo(rightMouth.x, rightMouth.y);
             this.ctx.stroke();
         }
+        if (leftIndex) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(leftIndex.x, leftIndex.y);
+            this.ctx.lineTo(leftIndex.x+20, leftIndex.y+20);
+            this.ctx.stroke();
+        }
+        if (rightIndex) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(rightIndex.x, rightIndex.y);
+            this.ctx.lineTo(rightIndex.x+20, rightIndex.y+20);
+            this.ctx.stroke();
+        }
+        if (leftShoulder) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(leftShoulder.x-20, leftShoulder.y-20);
+            this.ctx.lineTo(leftShoulder.x+20, leftShoulder.y-20);
+            this.ctx.stroke();
+        }
+        if (rightShoulder) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(rightShoulder.x-20, rightShoulder.y-20);
+            this.ctx.lineTo(rightShoulder.x+20, rightShoulder.y-20);
+            this.ctx.stroke();
+        }       
+        
     }
 
     public draw(pose: Pose) {
