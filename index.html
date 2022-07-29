@@ -4,9 +4,10 @@
   <title>Three.js 101</title>
   <!--  Simple reset to delete the margins  -->
   <style>
-    video { width: 100%; height: 100% }
+    video { width: 100%; height: 100%;transform: scaleX(-1); display: none;  }
+    canvas { position: absolute; width: 100%; height: 100%; transform: scaleX(-1); }
+    section { position: absolute; width: 100%; height: 100%; transform: scaleX(-1);}
     body { margin: 0; }
-    canvas { position: absolute; width: 100%; height: 100% }
     .container { position: relative; width: 100%; height: 100%; }
   </style>
   <!--  Three.js CDN  -->
@@ -21,15 +22,20 @@
     width="640"
     height="480"
   ></video>
-  <canvas
+  <section class="game">
+    <canvas
     id="tracker_canvas"
     width="640"
     height="480"        
   >
   </canvas>
+
+  </section>
   </div>
   <!--  Our code  -->
-  <script src="./src/three/app.ts"></script>
-  <script src="./src/tensor/main.ts"></script>
+  <script type="module" src="app.ts"></script>
+  <!--
+  <script type="module" src="./src/tensor/main.ts"></script>
+  -->
 </body>
 </html>
