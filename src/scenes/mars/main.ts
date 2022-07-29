@@ -1,52 +1,3 @@
-// import {initUserCamera, initPoseDetection, tracker_context, user_camera} from './src/tensor/main'
-// import {initializeOceanScene, initializeSceneCamera, initializeSceneRenderer, createCube} from './src/three/main'
-// import {Skeleton} from './src/tensor/skeleton'
-
-//   window.onload = async () => {
-//     console.log('in the window.onload callback  function')
-
-//     var ocean_scene1 = initializeOceanScene()
-//     var scene_camera1 = initializeSceneCamera();
-//     var scene_renderer1 = initializeSceneRenderer();
-//     var local_cube = createCube();
-
-//     let rendererContainer = document.getElementsByClassName("game")[0];
-//     rendererContainer.appendChild(scene_renderer1.domElement);  
-//     ocean_scene1.add( local_cube );
-
-//     await initUserCamera();
-//     const detector = await initPoseDetection();
-//     const skeleton = new Skeleton(tracker_context);
-
-//     console.log("tracker loaded ", tracker_context);
-
-
-//     async function render() {
-
-//         const poses = await detector.estimatePoses(user_camera!, {
-//             maxPoses: 1,
-//             flipHorizontal: false,
-//             scoreThreshold: 0.4,
-//           });
-
-//           tracker_context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-          
-//           if (poses[0]) {
-//             skeleton.draw(poses[0]);
-//           }
-
-//         local_cube.rotation.x += 0.01;
-//         local_cube.rotation.y += 0.01;
-      
-//         // Render the scene
-//         scene_renderer1.render(ocean_scene1, scene_camera1);
-//         requestAnimationFrame(render);
-//     }
-//     render();
-//   }
-
-
-
 const randnum = (min, max) => Math.round(Math.random() * (max - min) + min);
 
 class CannonHelper{
@@ -409,14 +360,13 @@ class CannonHelper{
 
 
 //===================================================== scene
-console.log("================================================")
 var scene = new THREE.Scene();
 
 var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .01, 100000 );
 camera.position.set( 1, 1, -1 );
 camera.lookAt( scene.position );
 
-var renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.shadowMap.enabled = true;
 renderer.shadowMapSoft = true; // Shadow
@@ -582,7 +532,7 @@ var geometry = new THREE.BoxBufferGeometry( .5, 1, .5 );
  /* We change the pivot point to be at the bottom of the cube, instead of its center. So we translate the whole geometry. */
 geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
 var material = new THREE.MeshNormalMaterial({transparent: true,opacity:0});
-var mesh = new THREE.Mesh( geometry, material );
+mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 
@@ -744,7 +694,7 @@ Promise.all( [
     var raycastHelperGeometry = new THREE.CylinderGeometry( 0, 1, 5, 1.5 );
     raycastHelperGeometry.translate( 0, 0, 0 );
     raycastHelperGeometry.rotateX( Math.PI / 2 );
-    var raycastHelperMesh = new THREE.Mesh( raycastHelperGeometry, new THREE.MeshNormalMaterial() );
+    raycastHelperMesh = new THREE.Mesh( raycastHelperGeometry, new THREE.MeshNormalMaterial() );
     scene.add( raycastHelperMesh );
 
 
@@ -804,7 +754,7 @@ var geometry = new THREE.BoxBufferGeometry( 0.15, 2, 0.15 );
  /* We change the pivot point to be at the bottom of the cube, instead of its center. So we translate the whole geometry. */
   geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1, 0));
 var material = new THREE.MeshNormalMaterial({transparent: true,opacity:0});
-var flagLocation = new THREE.Mesh( geometry, material );
+flagLocation = new THREE.Mesh( geometry, material );
 scene.add(flagLocation);
 flagLocation.position.x = 10;
 flagLocation.position.z = 50;
@@ -837,7 +787,7 @@ scene.add( flagLight );
 
 //flag
  var texture = new THREE.TextureLoader().load('https://edgy.app/wp-content/uploads/2016/10/vr-debate-e1475603418440.webp');
-var plane = new THREE.Mesh(new THREE.PlaneGeometry(600, 430, 20, 20, true), new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide }) );
+plane = new THREE.Mesh(new THREE.PlaneGeometry(600, 430, 20, 20, true), new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide }) );
 plane.scale.set(.0025, .0025, .0025);
 plane.position.set(0, 1.5, 0);
 plane.position.x = .75;
@@ -901,7 +851,7 @@ loader.load("https://raw.githubusercontent.com/baronwatts/models/master/moon-veh
   const imageSrc = textureLoader.load('https://raw.githubusercontent.com/baronwatts/models/master/snowflake.png');
   const shaderPoint = THREE.ShaderLib.points;
 
-  var uniforms = THREE.UniformsUtils.clone(shaderPoint.uniforms);
+  uniforms = THREE.UniformsUtils.clone(shaderPoint.uniforms);
   uniforms.map.value = imageSrc;
 
   var matts = new THREE.PointsMaterial({

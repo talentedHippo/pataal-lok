@@ -39,7 +39,6 @@ export class Skeleton {
     }
 
     public draw(pose: Pose) {
-        console.log("-------draw------", pose);
         this.drawHead(pose);
     }
 }
