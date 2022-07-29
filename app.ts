@@ -416,6 +416,9 @@ const skeleton = new Skeleton(tracker_context);
 
 console.log("tracker loaded ", tracker_context);
 
+var nose_position_turn = 0;
+var nose_position_move = 0;
+var nose_position_start = 0;
 
 (async function animate() {
     requestAnimationFrame( animate );
@@ -437,6 +440,35 @@ console.log("tracker loaded ", tracker_context);
       
       if (poses[0]) {
         skeleton.draw(poses[0]);
+        
+        const nose = poses[0].keypoints.find((keypoint) => keypoint.name === 'nose');
+
+        if( !nose_position_turn ){
+            nose_position_turn = nose?.x;
+        }
+        // turns and moves in the increments of 0.025 
+        var nose_turn = -1*(nose.x - nose_position_turn)/500
+        js.turn = nose_turn;
+
+        if( !nose_position_start ){
+            nose_position_start = nose?.y;
+        }
+
+        if( !nose_position_move ){
+            nose_position_move = nose?.y;
+        }
+
+        var move_trigger = 25
+        var nose_move = (nose_position_start - nose.y)
+        if( nose_position_start - nose.y > move_trigger ){
+            console.log("forward")
+            js.forward = 0.025;
+        }else{
+            console.log("stop")
+            js.forward = 0
+        }
+        
+        //console.log('start ', nose_position_start, 'current ', nose?.y, nose_move);
       }
 
     
@@ -469,6 +501,14 @@ function joystickCallback( forward, turn ){
     js.turn = -turn; 
 }
 
+function updateScene(forward, turn){
+    const maxSteerVal = 0.05;
+    const steer = maxSteerVal * turn;
+    //mesh.rotateY(steer);
+    //js.turn = turn
+    js.forward = turn;
+}
+
 function updateDrive(forward=js.forward, turn=js.turn){ 
     const maxSteerVal = 0.05;
     const maxForce = .15;
@@ -485,5 +525,5 @@ function updateDrive(forward=js.forward, turn=js.turn){
         if(clip2) clip2.stop();
         if(clip1) clip1.play();
     }
-        mesh.rotateY(steer);
+    mesh.rotateY(steer);
 }
