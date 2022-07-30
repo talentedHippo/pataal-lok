@@ -419,6 +419,7 @@ console.log("tracker loaded ", tracker_context);
 var nose_position_turn = 0;
 var nose_position_move = 0;
 var nose_position_start = 0;
+var startShoulderWidth = 0;
 
 (async function animate() {
     requestAnimationFrame( animate );
@@ -446,7 +447,7 @@ var nose_position_start = 0;
         if( !nose_position_turn ){
             nose_position_turn = nose?.x;
         }
-        // turns and moves in the increments of 0.025 
+        //turns and moves in the increments of 0.025 
         var nose_turn = -1*(nose.x - nose_position_turn)/500
         js.turn = nose_turn;
 
@@ -457,17 +458,32 @@ var nose_position_start = 0;
         if( !nose_position_move ){
             nose_position_move = nose?.y;
         }
-
+/*
         var move_trigger = 25
         var nose_move = (nose_position_start - nose.y)
         if( nose_position_start - nose.y > move_trigger ){
-            console.log("forward")
             js.forward = 0.025;
         }else{
-            console.log("stop")
             js.forward = 0
         }
-        
+*/
+        const leftShoulder = poses[0].keypoints.find((keypoint) => keypoint.name === 'left_shoulder');
+        const rightShoulder = poses[0].keypoints.find((keypoint) => keypoint.name === 'right_shoulder');
+
+        if (leftShoulder && rightShoulder) {
+            if( !startShoulderWidth ){
+                startShoulderWidth = leftShoulder.x - rightShoulder.x;
+            }
+            var currentShoulderWidth = leftShoulder.x - rightShoulder.x;
+            var shoulder_turn = (startShoulderWidth- currentShoulderWidth)/1000
+            //if( shoulder_turn > 0.25 || shoulder_turn < -0.25)
+            {
+                console.log('Turn ', shoulder_turn);
+               // js.turn = shoulder_turn;
+            }
+
+        }
+
         //console.log('start ', nose_position_start, 'current ', nose?.y, nose_move);
       }
 

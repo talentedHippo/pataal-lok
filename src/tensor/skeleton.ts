@@ -54,19 +54,12 @@ export class Skeleton {
             this.ctx.lineTo(rightIndex.x+20, rightIndex.y+20);
             this.ctx.stroke();
         }
-        if (leftShoulder) {
+        if (leftShoulder && rightShoulder) {
             this.ctx.beginPath();
-            this.ctx.moveTo(leftShoulder.x-20, leftShoulder.y-20);
-            this.ctx.lineTo(leftShoulder.x+20, leftShoulder.y-20);
+            this.ctx.moveTo(leftShoulder.x+10, leftShoulder.y);
+            this.ctx.lineTo(rightShoulder.x-10, rightShoulder.y);
             this.ctx.stroke();
         }
-        if (rightShoulder) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(rightShoulder.x-20, rightShoulder.y-20);
-            this.ctx.lineTo(rightShoulder.x+20, rightShoulder.y-20);
-            this.ctx.stroke();
-        }       
-        
     }
 
     public draw(pose: Pose) {
