@@ -29,7 +29,7 @@ export class Skeleton {
 }
 
     public draw(pose: Pose) {
-        console.log(pose)
+        //console.log(pose)
         const leftEye = pose.keypoints.find((keypoint) => keypoint.name === 'left_eye');
         const rightEye = pose.keypoints.find((keypoint) => keypoint.name == 'right_eye');
         const nose = pose.keypoints.find((keypoint) => keypoint.name === 'nose');
@@ -145,48 +145,7 @@ export class Skeleton {
         const rightFoot = pose.keypoints.find((keypoint) => keypoint.name === 'right_foot_index');
         this.drawLine(rightHeel, rightFoot)
         this.drawPoint(rightFoot);
-        // if( leftEar ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(leftEar.x, leftEar.y-10);
-        //     this.ctx.lineTo(leftEar.x, leftEar.y+20);
-        //     this.ctx.stroke();
-        // }
-        // if( rightEar ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(rightEar.x, rightEar.y-10);
-        //     this.ctx.lineTo(rightEar.x, rightEar.y+20);
-        //     this.ctx.stroke();
-        // }
-
-        // const leftAnkle = pose.keypoints.find((keypoint) => keypoint.name === 'left_ankle');
-        // const rightAnkle = pose.keypoints.find((keypoint) => keypoint.name === 'right_ankle');
-        // if( leftAnkle ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(leftAnkle.x, leftAnkle.y-10);
-        //     this.ctx.lineTo(leftAnkle.x, leftAnkle.y+20);
-        //     this.ctx.stroke();
-        // }
-        // if( rightAnkle ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(rightAnkle.x, rightAnkle.y-10);
-        //     this.ctx.lineTo(rightAnkle.x, rightAnkle.y+20);
-        //     this.ctx.stroke();
-        // }
-        
-        // if( leftElbow ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(leftElbow.x, leftElbow.y-10);
-        //     this.ctx.lineTo(leftElbow.x, leftElbow.y+20);
-        //     this.ctx.stroke();
-        // }
-        // if( rightElbow ) {
-        //     this.ctx.beginPath();
-        //     this.ctx.moveTo(rightElbow.x, rightElbow.y-10);
-        //     this.ctx.lineTo(rightElbow.x, rightElbow.y+20);
-        //     this.ctx.stroke();
-        // }       
-        //this.ctx.canvas.width  = window.innerWidth;
-        //this.ctx.canvas.height = window.innerHeight;           
+              
     }
 
 }

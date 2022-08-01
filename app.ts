@@ -1,7 +1,9 @@
 import {initUserCamera, initPoseDetection, tracker_context, user_camera} from './src/tensor/main'
 import {initializeOceanScene, initializeSceneCamera, initializeSceneRenderer, createCube} from './src/three/main'
 import {Skeleton} from './src/tensor/skeleton'
+import {MTLLoader} from './MTLLoader';
 
+//import {loadFruitsModels} from './src/scenes/sea-creatures'
   window.onload = async () => {
     console.log('in the window.onload callback  function')
 
@@ -52,7 +54,21 @@ import {Skeleton} from './src/tensor/skeleton'
     
     // Add cube to Scene
     scene.add( cube );
-    
+
+    // var mtlLoader = new MTLLoader();
+    // mtlLoader.setPath("../../assets/apple");
+    // mtlLoader.load('Apple_01.mtl', function (materials) {
+    //   materials.preload();
+
+    //   var objLoader = new THREE.OBJLoader();
+    //   objLoader.setMaterials(materials);
+    //   objLoader.setPath("../../assets/apple");
+    //   objLoader.load('Apple_01.obj', function (object) {
+    //     object.position.y -= 10
+    //     scene.add( object)
+    //   });
+    // });
+
     async function render() {
 
         const poses = await detector.estimatePoses(user_camera!, {
