@@ -24,8 +24,7 @@ export async function initUserCamera() {
   
   const tracker_canvas = document.getElementById("tracker_canvas")!
   export var tracker_context = tracker_canvas?.getContext("2d")
-  //export var tracker_context
-
+  
   export async function initPoseDetection() {
     const model = poseDetection.SupportedModels.BlazePose;
     const detector = await poseDetection.createDetector(model, {

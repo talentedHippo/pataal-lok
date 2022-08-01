@@ -8,18 +8,18 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
         
     //===================================================== scene
     console.log("=================STARTED===============================")
-    export var mars_camera = new THREE.Scene();
+    export var scene = new THREE.Scene();
 
-    export var mars_camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .01, 100000 );
-    mars_camera.position.set( 1, 1, -1 );
-    mars_camera.lookAt( mars_scene.position );
+    var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, .01, 100000 );
+    camera.position.set( 1, 1, -1 );
+    camera.lookAt( scene.position );
 
-    export var mars_renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-    mars_renderer.setSize( window.innerWidth, window.innerHeight );
-    mars_renderer.shadowMap.enabled = true;
-    mars_renderer.shadowMapSoft = true; // Shadow
-    mars_renderer.shadowMap.Type = THREE.PCFShadowMap; //Shadow
-    document.body.appendChild( mars_renderer.domElement );
+    var renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMapSoft = true; // Shadow
+    renderer.shadowMap.Type = THREE.PCFShadowMap; //Shadow
+    document.body.appendChild( renderer.domElement );
 
 
   //===================================================== cannon
@@ -57,7 +57,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     //===================================================== add front & back lighting
     var light = new THREE.DirectionalLight( new THREE.Color("gray"), 1);
     light.position.set(1, 1, 1).normalize();
-    mars_scene.add(light);
+    scene.add(light);
 
 
 
@@ -157,7 +157,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
     var material = new THREE.MeshNormalMaterial({transparent: true,opacity:0});
     var mesh = new THREE.Mesh( geometry, material );
-    mars_scene.add( mesh );
+    scene.add( mesh );
 
 
     var light = new THREE.DirectionalLight( new THREE.Color('white'), .5 );
@@ -176,7 +176,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     var loader = new THREE.GLTFLoader();
     loader.load( 'https://raw.githubusercontent.com/baronwatts/models/master/astronaut.glb', function ( object ) {
    
-        object.mars_scene.traverse( function( node ) {
+        object.scene.traverse( function( node ) {
             if ( node instanceof THREE.Mesh ) { 
                 node.castShadow = true; 
                 node.material.side = THREE.DoubleSide;
@@ -244,7 +244,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
         raycastHelperGeometry.translate( 0, 0, 0 );
         raycastHelperGeometry.rotateX( Math.PI / 2 );
         var raycastHelperMesh = new THREE.Mesh( raycastHelperGeometry, new THREE.MeshNormalMaterial() );
-        mars_scene.add( raycastHelperMesh );
+        scene.add( raycastHelperMesh );
 
 
 
@@ -287,7 +287,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 1, 0));
     var material = new THREE.MeshNormalMaterial({transparent: true,opacity:0});
     var flagLocation = new THREE.Mesh( geometry, material );
-    mars_scene.add(flagLocation);
+    scene.add(flagLocation);
     flagLocation.position.x = 10;
     flagLocation.position.z = 50;
     flagLocation.rotateY(Math.PI);
@@ -313,7 +313,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     flagLight.position.set( 0, 0, 0 );  
     flagLight.castShadow = true;   
     flagLight.target = flagLocation;       
-    mars_scene.add( flagLight );
+    scene.add( flagLight );
 
 
     //flag
@@ -369,7 +369,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
 
     var sparks = new THREE.Points(geo, matts );
     sparks.scale.set(1,1,1);
-    mars_scene.add(sparks);
+    scene.add(sparks);
 
     sparks.geometry.vertices.map((d,i)=>{
         d.y = randnum(30,40);
@@ -387,15 +387,15 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
     
     //===================================================== 3rd person view
     var followCam = new THREE.Object3D();
-    followCam.position.copy(mars_camera.position);
-    mars_scene.add(followCam);
+    followCam.position.copy(camera.position);
+    scene.add(followCam);
     followCam.parent = mesh;
 
 //////////fundtion here onwards
 function updateCamera(){
     if(followCam){
-        mars_camera.position.lerp(followCam.getWorldPosition(new THREE.Vector3()), 0.05);
-        mars_camera.lookAt(mesh.position.x, mesh.position.y + .5, mesh.position.z);
+        camera.position.lerp(followCam.getWorldPosition(new THREE.Vector3()), 0.05);
+        camera.lookAt(mesh.position.x, mesh.position.y + .5, mesh.position.z);
     }
 }
 
@@ -407,7 +407,7 @@ var lastTime;
     requestAnimationFrame( animate );
     updateCamera();
     updateDrive();
-    mars_renderer.render( scene, camera );
+    renderer.render( scene, camera );
     //composer.render();
 
     let delta = clock.getDelta();
