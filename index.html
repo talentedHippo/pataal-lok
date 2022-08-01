@@ -4,11 +4,11 @@
   <title>Three.js 101</title>
   <!--  Simple reset to delete the margins  -->
   <style>
-    video { width: 100%; height: 100%;transform: scaleX(-1); display: none;  }
-    canvas { position: absolute; width: 100%; height: 100%; transform: scaleX(-1); }
-    section { position: absolute; width: 100%; height: 100%; transform: scaleX(-1);}
-    body { margin: 0; }
-    .container { position: relative; width: 100%; height: 100%; }
+    video { width: 640px; height: 480px; transform: scaleX(-1); /*display: none;*/ }
+    canvas { position: absolute; top: 0; left: 0; width: 640px; height: 480px; transform: scaleX(-1); }
+    section { position: absolute; width: 640px; height: 480px; align-content: center;}
+    body { margin: 0; align-content: center;}
+    .container { position: relative; width: 640px; width: 480px }
   </style>
   <!--  Three.js CDN  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
@@ -17,21 +17,18 @@
   <div class="container">
     <video
     id="user_camera"
-    playsinline
-    autoplay="true"
-    width="640"
-    height="480"
-  ></video>
-  <section class="game">
-    <canvas
+      playsinline
+      autoplay="true"
+      width="640"
+      height="480"
+    ></video>
+    <canvas 
     id="tracker_canvas"
-    width="640"
-    height="480"        
-  >
-  </canvas>
-
-  </section>
+      width="640"
+      height="480"
+    />
   </div>
+
   <!--  Our code  -->
   <script type="module" src="app.ts"></script>
   <!--

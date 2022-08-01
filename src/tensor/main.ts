@@ -7,8 +7,8 @@ export async function initUserCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'user',
-        width: { ideal: window.innerWidth },
-        height: { ideal: window.innerHeight },
+        width: { ideal: 640 },
+        height: { ideal: 480 },
       },
       audio: false,
     });
@@ -24,16 +24,15 @@ export async function initUserCamera() {
   
   const tracker_canvas = document.getElementById("tracker_canvas")!
   export var tracker_context = tracker_canvas?.getContext("2d")
-  //export var tracker_context
 
-  export async function initPoseDetection() {
+  export async function initPoseDetection() {  
+    //const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER});
     const model = poseDetection.SupportedModels.BlazePose;
     const detector = await poseDetection.createDetector(model, {
       runtime: 'tfjs',
       modelType: 'lite',
       maxPoses: 1,
-    } as poseDetection.BlazePoseTfjsModelConfig);
-  
+    } as poseDetection.BlazePoseTfjsModelConfig);    
     return detector;
   }
 

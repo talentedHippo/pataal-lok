@@ -11,8 +11,8 @@ import {Skeleton} from './src/tensor/skeleton'
     var local_cube = createCube();
 
     let rendererContainer = document.getElementsByClassName("game")[0];
-    rendererContainer.appendChild(scene_renderer1.domElement);  
-    ocean_scene1.add( local_cube );
+    //rendererContainer.appendChild(scene_renderer1.domElement);  
+    //ocean_scene1.add( local_cube );
 
     await initUserCamera();
     const detector = await initPoseDetection();
@@ -39,7 +39,7 @@ import {Skeleton} from './src/tensor/skeleton'
         local_cube.rotation.y += 0.01;
       
         // Render the scene
-        scene_renderer1.render(ocean_scene1, scene_camera1);
+        //scene_renderer1.render(ocean_scene1, scene_camera1);
         requestAnimationFrame(render);
     }
     render();
