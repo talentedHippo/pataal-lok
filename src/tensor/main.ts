@@ -1,14 +1,14 @@
+import * as poseDetection from '@tensorflow-models/pose-detection';
+import '@tensorflow/tfjs-backend-webgl'
 
+export var user_camera = document.getElementById("user_camera")!
 
-const user_camera = document.getElementById("user_camera")
-
-
-async function initUserCamera() {
+export async function initUserCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         facingMode: 'user',
-        width: { ideal: window.innerWidth },
-        height: { ideal: window.innerHeight },
+        width: { ideal: 640 },
+        height: { ideal: 480 },
       },
       audio: false,
     });
@@ -22,8 +22,18 @@ async function initUserCamera() {
     return videoReadyPromise;
   }
   
-  async function main() {
-      await initUserCamera();
+  const tracker_canvas = document.getElementById("tracker_canvas")!
+  export var tracker_context = tracker_canvas?.getContext("2d")
+
+  export async function initPoseDetection() {  
+    //const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, {modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER});
+    const model = poseDetection.SupportedModels.BlazePose;
+    const detector = await poseDetection.createDetector(model, {
+      runtime: 'tfjs',
+      modelType: 'lite',
+      maxPoses: 1,
+    } as poseDetection.BlazePoseTfjsModelConfig);    
+    return detector;
   }
+
   
-  main();
