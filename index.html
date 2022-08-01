@@ -4,11 +4,10 @@
   <title>Three.js 101</title>
   <!--  Simple reset to delete the margins  -->
   <style>
-    video { width: 640px; height: 480px; transform: scaleX(-1); /*display: none;*/ }
+    video { width: 640px; height: 480px; transform: scaleX(-1); display: none;  }
     canvas { position: absolute; top: 0; left: 0; width: 640px; height: 480px; transform: scaleX(-1); }
-    section { position: absolute; width: 640px; height: 480px; align-content: center;}
-    body { margin: 0; align-content: center;}
-    .container { position: relative; width: 640px; width: 480px }
+    section { position: absolute; width: 640px; height: 480px; /*transform: scaleX(-1);*/}
+    body { margin: 0; vertical-align: middle;}    
   </style>
   <!--  Three.js CDN  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>

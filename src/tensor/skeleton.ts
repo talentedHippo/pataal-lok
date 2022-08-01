@@ -186,8 +186,9 @@ export class Skeleton {
         //     this.ctx.moveTo(rightElbow.x, rightElbow.y-10);
         //     this.ctx.lineTo(rightElbow.x, rightElbow.y+20);
         //     this.ctx.stroke();
-        // }          
-
+        // }       
+        //this.ctx.canvas.width  = window.innerWidth;
+        //this.ctx.canvas.height = window.innerHeight;           
     }
 
 }
