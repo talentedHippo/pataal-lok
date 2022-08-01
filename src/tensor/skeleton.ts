@@ -29,7 +29,7 @@ export class Skeleton {
 }
 
     public draw(pose: Pose) {
-        //console.log(pose)
+        console.log(pose)
         const leftEye = pose.keypoints.find((keypoint) => keypoint.name === 'left_eye');
         const rightEye = pose.keypoints.find((keypoint) => keypoint.name == 'right_eye');
         const nose = pose.keypoints.find((keypoint) => keypoint.name === 'nose');

@@ -17,6 +17,7 @@ import {Skeleton} from './src/tensor/skeleton'
     await initUserCamera();
     const detector = await initPoseDetection();
     const skeleton = new Skeleton(tracker_context);
+    
 
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
@@ -35,8 +36,11 @@ import {Skeleton} from './src/tensor/skeleton'
     // Configure renderer size
     renderer.setSize( window.innerWidth, window.innerHeight );
   
-    // Append Renderer to DOM
-    document.body.appendChild(renderer.domElement );
+    const list = document.getElementById("info");
+    list?.insertBefore(renderer.domElement, list.children[0]);    
+    renderer.domElement.style.left="0px";
+    renderer.domElement.style.top="0px";
+
     console.log("appened the renderer");
   
 
@@ -69,7 +73,6 @@ import {Skeleton} from './src/tensor/skeleton'
         // Render the scene
         renderer.render(scene, camera);
         requestAnimationFrame(render);
-        console.log("scene rendered successfully");
     }
     render();
   }
