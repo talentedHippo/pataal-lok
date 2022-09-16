@@ -349,7 +349,7 @@ var controls = new function() {
 
 
     //flag
-    var texture = new THREE.TextureLoader().load('./src/assets/flag-texture.webp');
+    var texture = new THREE.TextureLoader().load('./flag-texture.png');
     
     var plane = new THREE.Mesh(new THREE.PlaneGeometry(600, 430, 20, 20, true), new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide }) );
     plane.scale.set(.0025, .0025, .0025);
@@ -465,13 +465,13 @@ export function createCube(){
 }
 
 
-/*
-import {initUserCamera, initPoseDetection, user_camera, tracker_context} from './src/tensor/main'
-import {initializeOceanScene, initializeSceneCamera, initializeSceneRenderer, createCube} from './src/three/main'
-import {Skeleton} from './src/tensor/skeleton'
 
-//import {flagLocation, marse_scene, marse_camera, marse_renderer, updateCamera, updateDrive, mixers, marse_world, helper, mesh, modifier} from './src/scenes/mars/temp'
-import {flagLocation, flagLight, updateCamera, updateDrive, mixers, marse_world, helper, mesh, modifier} from './src/scenes/mars/temp'
+import {initUserCamera, initPoseDetection, user_camera, tracker_context} from '../../tensor/main'
+import { Skeleton } from '../../tensor/skeleton';
+import {initializeOceanScene, initializeSceneCamera, initializeSceneRenderer, createCube} from '../../three/main'
+
+// import {flagLocation, marse_scene, marse_camera, marse_renderer, updateCamera, updateDrive, mixers, marse_world, helper, mesh, modifier} from ''
+// import {flagLocation, flagLight, updateCamera, updateDrive, mixers, marse_world, helper, mesh, modifier} from './src/scenes/mars/temp'
 
 function fromImage ( image, width, depth, minHeight, maxHeight ) {
     width = width|0;
@@ -488,7 +488,7 @@ function fromImage ( image, width, depth, minHeight, maxHeight ) {
     canvas.width  = width;
     canvas.height = depth;
 
-    // document.body.appendChild( canvas );
+    document.body.appendChild( canvas );
 
     ctx.drawImage( image, 0, 0, width, depth );
     imgData = ctx.getImageData( 0, 0, width, depth ).data;
@@ -565,12 +565,12 @@ function fromUrl ( url, width, depth, minHeight, maxHeight ) {
     var loader = new THREE.GLTFLoader();
     loader.load( 'https://raw.githubusercontent.com/baronwatts/models/master/astronaut.glb', function ( object ){
     
-        // object.marse_scene.traverse( function( node ) {
-        //     if ( node instanceof THREE.Mesh ) { 
-        //         node.castShadow = true; 
-        //         node.material.side = THREE.DoubleSide;
-        //     }
-        // });
+        object.marse_scene.traverse( function( node ) {
+            if ( node instanceof THREE.Mesh ) { 
+                node.castShadow = true; 
+                node.material.side = THREE.DoubleSide;
+            }
+        });
         var player = object.scene;
         player.position.set(0, -.1, 0 );
         player.scale.set(.25,.25,.25);
@@ -602,15 +602,15 @@ function fromUrl ( url, width, depth, minHeight, maxHeight ) {
         marse_world.step(fixedTimeStep, dt);
         helper.updateBodies(marse_world);
 
-//        if(check) check();
+       if(check) check();
     
-        //flag
+        flag
         modifier && modifier.apply();
 
-        //display coordinates
-        //info.innerHTML = `<span>X: </span>${mesh.position.x.toFixed(2)}, &nbsp;&nbsp;&nbsp; <span>Y: </span>${mesh.position.y.toFixed(2)}, &nbsp;&nbsp;&nbsp; <span>Z: </span>${mesh.position.z.toFixed(2)}`
+        // display coordinates
+        info.innerHTML = `<span>X: </span>${mesh.position.x.toFixed(2)}, &nbsp;&nbsp;&nbsp; <span>Y: </span>${mesh.position.y.toFixed(2)}, &nbsp;&nbsp;&nbsp; <span>Z: </span>${mesh.position.z.toFixed(2)}`
 
-        const poses = await detector.estimatePoses(user_camera!, {
+        const poses = await detector.estimatePoses(user_camera, {
             maxPoses: 1,
             flipHorizontal: false,
             scoreThreshold: 0.4,
@@ -622,7 +622,7 @@ function fromUrl ( url, width, depth, minHeight, maxHeight ) {
             skeleton.draw(poses[0]);
           }
 
-          //tracker_context.scale(0.5,0.5)
+          tracker_context.scale(0.5,0.5)
 
         cube.rotation.x += 0.01;
         cube.rotation.y += 0.01;
@@ -643,4 +643,3 @@ window.addEventListener("resize", function() {
     mars_camera.updateProjectionMatrix();
   });
 
-  */

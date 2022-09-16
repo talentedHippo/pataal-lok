@@ -317,7 +317,7 @@ import {JoyStick} from './src/scenes/mars/joy-stick'
 
 
     //flag
-    var texture = new THREE.TextureLoader().load('./src/assets/flag-texture.webp');
+    var texture = new THREE.TextureLoader().load('./flag-texture.png');
     
     var plane = new THREE.Mesh(new THREE.PlaneGeometry(600, 430, 20, 20, true), new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide }) );
     plane.scale.set(.0025, .0025, .0025);

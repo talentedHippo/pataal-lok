@@ -2,19 +2,25 @@
   "name": "pataal-lok",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "typescript": "^4.6.4",
-    "vite": "^3.0.0"
+    "dev": "webpack serve --config ./bundler/webpack.dev.js"
   },
   "dependencies": {
     "@tensorflow-models/pose-detection": "^0.0.6",
     "@tensorflow/tfjs-backend-webgl": "^3.19.0",
-    "@tensorflow/tfjs-converter": "^3.19.0"
+    "@tensorflow/tfjs-converter": "^3.19.0",
+    "babel-loader": "^8.2.5",
+    "cannon-es": "^0.20.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "html-loader": "^4.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "lil-gui": "^0.17.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "portfinder-sync": "^0.0.2",
+    "three": "^0.124.0",
+    "webp-loader": "^0.6.0",
+    "webpack": "^5.74.0",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-merge": "^5.8.0"
   }
 }

@@ -2,9 +2,11 @@
 import { Pose } from '@tensorflow-models/pose-detection';
 
 export class Skeleton {
-    constructor(private ctx: CanvasRenderingContext2D) {}
+    constructor(ctx) {
+		this.ctx = ctx
+	}
 
-    private drawHead(pose: Pose) {
+    drawHead(pose) {
         const leftEye = pose.keypoints.find((keypoint) => keypoint.name === 'left_eye');
         const rightEye = pose.keypoints.find((keypoint) => keypoint.name == 'right_eye');
         const leftMouth = pose.keypoints.find((keypoint) => keypoint.name === 'mouth_left');
@@ -62,7 +64,7 @@ export class Skeleton {
         }
     }
 
-    public draw(pose: Pose) {
+    draw(pose) {
         this.drawHead(pose);
     }
 }

@@ -1,3 +1,5 @@
+import * as CANNON from 'cannon-es';
+import * as THREE from 'three';
 
 export class CannonHelper{
     constructor(scene){
@@ -156,7 +158,7 @@ export class CannonHelper{
         break;
 
       case CANNON.Shape.types.CONVEXPOLYHEDRON:
-        const geo = new THREE.Geometry();
+		const geo = new THREE.PolyhedronGeometry(shape.vertices, shape.faces)
 
         // Add vertices
         shape.vertices.forEach(function(v){
@@ -261,7 +263,6 @@ export class CannonHelper{
         }
 
         var mat = new THREE.MeshLambertMaterial({
-          vertexColors: THREE.VertexColors,
           wireframe: false
         });
 
@@ -306,7 +307,7 @@ export class CannonHelper{
         break;
 
       default:
-        throw "Visual type not recognized: "+shape.type;
+        throw "Visual type not recognized: " + shape.type;
       }
 
       mesh.receiveShadow = receiveShadow;
