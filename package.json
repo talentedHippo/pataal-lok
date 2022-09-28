@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "webpack serve --config ./bundler/webpack.dev.js",
     "build": "webpack --config ./bundler/webpack.prod.js",
-    "start": "node index.js"
+    "start": "node index.js",
+	"heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@mediapipe/pose": "^0.5.1635988162",
     "@tensorflow-models/pose-detection": "^0.0.6",
     "@tensorflow/tfjs-backend-webgl": "^3.19.0",
     "@tensorflow/tfjs-converter": "^3.19.0",
