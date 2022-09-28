@@ -17,7 +17,7 @@ export class Skeleton {
         const leftShoulder = pose.keypoints.find((keypoint) => keypoint.name === 'left_shoulder');
         const rightShoulder = pose.keypoints.find((keypoint) => keypoint.name === 'right_shoulder');
 
-        
+
         this.ctx.fillStyle = 'red';
         this.ctx.strokeStyle = 'red';
         this.ctx.lineWidth = 5;

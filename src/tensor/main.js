@@ -1,6 +1,7 @@
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import '@tensorflow/tfjs-backend-webgl'
 
+
 export var user_camera = document.getElementById("user_camera")
 
 export async function initUserCamera() {
@@ -35,8 +36,7 @@ export async function initUserCamera() {
     const model = poseDetection.SupportedModels.BlazePose;
     const detector = await poseDetection.createDetector(model, {
       runtime: 'tfjs',
-      modelType: 'lite',
-      maxPoses: 1,
+      modelType: 'lite'
     });
   
     return detector;

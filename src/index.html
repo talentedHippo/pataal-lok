@@ -4,6 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Underwater</title>
+	<style>
+		.user_camera{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			z-index: 10;
+		}
+		.tracker_canvas{
+			position: absolute;
+			z-index: -10;
+			top: 0;
+			left: 0;
+		}
+	</style>
   </head>
 
   <body>
@@ -11,22 +25,23 @@
     <div id="root"></div>
 	<div class="container">
 		<video
-		id="user_camera"
-		playsinline
-		autoplay="true"
-		width="128"
-		height="96"
-	  ></video>
-	  <section class="game">
+			id="user_camera"
+			class="user_camera"
+			playsinline
+			autoplay="true"
+			width="256"
+			height="192"
+	  	></video>
+		<section class="game">
 		<div id="info">info here</div>
-			<canvas
+		<canvas
 			id="tracker_canvas"
 			width="640"
 			height="480"  
 			background="transparent"      
-			>
+		>
 		</canvas>
-	  </section>
+		</section>
 	  </div>  
   </body>
 </html>

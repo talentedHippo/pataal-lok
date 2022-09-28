@@ -418,6 +418,7 @@ import {initUserCamera, initPoseDetection, user_camera, tracker_context} from '.
 import {Skeleton} from './tensor/skeleton'
 
 initUserCamera();
+
 const detector = await initPoseDetection();
 const skeleton = new Skeleton(tracker_context);
 
