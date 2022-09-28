@@ -6,7 +6,7 @@
     "dev": "webpack serve --config ./bundler/webpack.dev.js",
     "build": "webpack --config ./bundler/webpack.prod.js",
     "start": "node index.js",
-	"heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@tensorflow-models/pose-detection": "^0.0.6",
