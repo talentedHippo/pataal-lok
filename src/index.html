@@ -5,43 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Underwater</title>
 	<style>
-		.user_camera{
+		.camera_div{
 			position: absolute;
 			bottom: 10px;
 			right: 10px;
-			z-index: 10;
 		}
-		.tracker_canvas{
+
+		#tracker_canvas{
 			position: absolute;
 			z-index: -10;
 			top: 0;
 			left: 0;
 		}
+
+		.user_canvas{
+			z-index: 10;
+			position: absolute;
+			right: 10px;
+			bottom: 50px;
+		}
+
+		.user_camera{
+			z-index: 10;
+			position: absolute;
+			right: 10px;
+			bottom: 50px;
+		}
+
+		.user_button{
+			z-index: 1000;
+		}
 	</style>
+	<link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body style="margin: 0;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 	<div class="container">
-		<video
-			id="user_camera"
-			class="user_camera"
-			playsinline
-			autoplay="true"
-			width="256"
-			height="192"
-	  	></video>
-		<section class="game">
-		<div id="info">info here</div>
-		<canvas
-			id="tracker_canvas"
-			width="640"
-			height="480"  
-			background="transparent"      
-		>
-		</canvas>
-		</section>
-	  </div>  
+		<div class="game">
+			<div id="info"></div>
+			<canvas
+				id="tracker_canvas"
+				width="640"
+				height="480"  
+				background="transparent"      
+			>
+			</canvas>
+		</div>
+		<div id="camera_div" class="camera_div">
+			<video
+				id="user_camera"
+				class="user_camera"
+				playsinline
+				autoplay="true"
+				width="360px"
+				height="270px"
+			></video>
+			<canvas
+				id="user_canvas"
+				class="user_canvas"
+				width="360px"
+				height="270px"
+			></canvas>
+		</div>
+	</div>  
   </body>
 </html>

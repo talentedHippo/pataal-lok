@@ -1,7 +1,7 @@
 body {
   /* set margin to 0 and overflow to hidden, to go fullsc{reen */
   margin: 0;
-  overflow: hidden;
+  overflow: none;
   background-color: #000000;
   color: white;
 }

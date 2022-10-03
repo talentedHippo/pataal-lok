@@ -3,14 +3,12 @@ import '@tensorflow/tfjs-backend-webgl'
 
 
 export var user_camera = document.getElementById("user_camera")
-
 export async function initUserCamera() {
 	try{
+		var box = user_camera.getBoundingClientRect()
 		const stream = await navigator.mediaDevices.getUserMedia({
 			video: {
-			  facingMode: 'user',
-			  width: { ideal: window.innerWidth },
-			  height: { ideal: window.innerHeight },
+			  facingMode: 'user'
 			},
 			audio: false,
 		  });
@@ -36,7 +34,7 @@ export async function initUserCamera() {
     const model = poseDetection.SupportedModels.BlazePose;
     const detector = await poseDetection.createDetector(model, {
       runtime: 'tfjs',
-      modelType: 'lite'
+      modelType: 'full'
     });
   
     return detector;
