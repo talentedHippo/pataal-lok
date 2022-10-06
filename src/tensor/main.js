@@ -7,9 +7,7 @@ export async function initUserCamera() {
 	try{
 		var box = user_camera.getBoundingClientRect()
 		const stream = await navigator.mediaDevices.getUserMedia({
-			video: {
-			  facingMode: 'user'
-			},
+			video: true,
 			audio: false,
 		  });
 		
