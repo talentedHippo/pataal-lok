@@ -84,6 +84,10 @@ module.exports = {
 				[
 					'webp-loader'
 				]
+			},
+			{
+				test: /\.(glb|gltf)$/,
+				type: 'asset/resource'
 			}
         ]
     },

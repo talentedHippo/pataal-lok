@@ -11,8 +11,7 @@ import { HorizontalTiltShiftShader } from 'three/examples/jsm/shaders/Horizontal
 import * as CANNON from 'cannon-es';
 import GUI from 'lil-gui';
 import * as posenet from '@tensorflow-models/posenet'
-
-
+import model from './assets/astronaut.glb'
 
 const randnum = (min, max) => Math.round(Math.random() * (max - min) + min);
 	
@@ -192,7 +191,7 @@ var clip2;
 var clip3;
 
 	var loader = new GLTFLoader();
-	loader.load( 'https://raw.githubusercontent.com/baronwatts/models/master/astronaut.glb', function ( object ) {
+	loader.load( model, function ( object ) {
 	
 		object.scene.traverse( function( node ) {
 			if ( node instanceof THREE.Mesh ) { 

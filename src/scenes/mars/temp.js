@@ -1,6 +1,7 @@
 //import {fromImage,fromUrl} from './src/scenes/mars/utils'
 import {CannonHelper} from './cannon-helper'
 import {JoyStick} from './joy-stick'
+import model from '../../assets/astronaut.glb'
 
 
 function fromImage ( image, width, depth, minHeight, maxHeight ) {
@@ -563,7 +564,7 @@ function fromUrl ( url, width, depth, minHeight, maxHeight ) {
     var fixedTimeStep = 1.0/60.0;
 
     var loader = new THREE.GLTFLoader();
-    loader.load( 'https://raw.githubusercontent.com/baronwatts/models/master/astronaut.glb', function ( object ){
+    loader.load( model, function ( object ){
     
         object.marse_scene.traverse( function( node ) {
             if ( node instanceof THREE.Mesh ) { 
