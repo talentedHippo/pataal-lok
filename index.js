@@ -5,7 +5,6 @@ const path = require('path')
 const port = process.env.PORT || 3003;
 
 app.use(express.json());
-app.use(cors());
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'))
