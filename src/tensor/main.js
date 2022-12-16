@@ -11,13 +11,13 @@ export async function initUserCamera() {
 			audio: false,
 		  });
 		
-		  let onVideoReady = (ready) => {};
-		  const videoReadyPromise = new Promise((resolve) => onVideoReady = resolve);
-		  user_camera.onloadedmetadata = () => onVideoReady(true);
+		let onVideoReady = (ready) => {};
+		const videoReadyPromise = new Promise((resolve) => onVideoReady = resolve);
+		user_camera.onloadedmetadata = () => onVideoReady(true);
+	
+		user_camera.srcObject = stream;
 		
-		  user_camera.srcObject = stream;
-		  
-		  return videoReadyPromise;
+		return videoReadyPromise;
 	}
     catch(e){
 		console.log(e)
